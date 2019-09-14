@@ -1,0 +1,54 @@
+bool stringsRearrangement(std::vector<std::string> inputArray)
+{
+	//push all starting positions
+	std::vector<std::vector<int>> paths;
+	std::vector<std::vector<bool>> checked;
+	for (int i = 0; i < inputArray.size(); ++i)
+	{
+		std::vector<int> initialPath{i};
+		paths.push_back(initialPath);
+
+		std::vector<bool> initialChecked(inputArray.size());
+		initialChecked[i] = true;
+		checked.push_back(initialChecked);
+	}
+
+	int differences = 0;
+	//follow each path
+	for (int i = 0; i < paths.size(); ++i)
+	{
+		for (int j = 0; j < inputArray.size(); ++j)
+		{
+			if (!checked[i][j]) 
+			{
+				differences = 0;
+				for (int k = 0; k < inputArray[0].size(); ++k)
+				{
+					if (
+						inputArray[paths[i][paths[i].size() - 1]][k] != inputArray[j][k]
+						)
+					{
+						++differences;
+					}
+				}
+				if (differences == 1)
+				{
+					if (paths[i].size() == inputArray.size() - 1)
+					{
+						return true;
+					}
+
+					//create and add new path.
+					std::vector<int> newPath(paths[i]);
+					newPath.push_back(j);
+					paths.push_back(newPath);
+
+					std::vector<bool> newChecked(checked[i]);
+					newChecked[j] = true;
+					checked.push_back(newChecked);
+				}
+			}
+		}
+	}
+	return false;
+}
