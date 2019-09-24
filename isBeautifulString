@@ -1,0 +1,16 @@
+bool isBeautifulString(std::string inputString) {
+	int foo[26] = { 0 };
+	int i;
+	for (i = 0; i < inputString.size(); i++)
+	{
+		++foo[inputString[i] - 97];
+	}
+	for (i = 0; i < 25; ++i)
+	{
+		if (foo[i] < foo[i + 1])
+		{
+			return false;
+		}
+	}
+	return true;
+}
