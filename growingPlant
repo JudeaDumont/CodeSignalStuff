@@ -1,0 +1,18 @@
+int growingPlant(int upSpeed, int downSpeed, int desiredHeight) {
+    int currentHeight = 0;
+    int iterations = 0;
+    while(currentHeight < desiredHeight)
+    {
+        currentHeight += upSpeed;
+        ++iterations;
+        if(currentHeight >= desiredHeight)
+        {
+            return iterations;
+        }
+        currentHeight -= downSpeed;
+        if(currentHeight <= 0)
+        {
+            return 0;
+        }
+    }
+}
