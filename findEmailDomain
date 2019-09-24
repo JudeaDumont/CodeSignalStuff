@@ -1,0 +1,10 @@
+std::string findEmailDomain(std::string address) {
+    for(int i = address.size(); i > -1; --i)
+    {
+        if(address[i] == '@')
+        {
+            return address.substr(i + 1);
+        }
+    }
+    return "";
+}
