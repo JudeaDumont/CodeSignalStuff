@@ -1,0 +1,15 @@
+bool bishopAndPawn(std::string bishop, std::string pawn) {
+    for(int i = 1; i < 8; ++i)
+    {
+        if(
+            bishop[0] + i == pawn[0] && bishop[1] + i == pawn[1] ||
+            bishop[0] - i == pawn[0] && bishop[1] + i == pawn[1] ||
+            bishop[0] - i == pawn[0] && bishop[1] - i == pawn[1] ||
+            bishop[0] + i == pawn[0] && bishop[1] - i == pawn[1]
+        )
+        {
+            return true;
+        }
+    }
+    return false;
+}
