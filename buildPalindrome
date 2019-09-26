@@ -25,11 +25,14 @@ std::string buildPalindrome(std::string st) {
 				prefixCut = i;
 				break;
 			}
+
+			//if the palindrome is  not satisfied find the next character that matches the last character and try again.
 		}
 	}
 
 	//if no match is found that means the whole series of characters besides the last one is used as the prefix cut.
 
+	//if the palindrom is satisfied (prefixCut != -1) then cut the prefix off that is necessary to confrom the whole string to a palindrome.
 	std::string add;
 	if (prefixCut == -1)
 	{
@@ -43,10 +46,5 @@ std::string buildPalindrome(std::string st) {
 		std::reverse(add.begin(), add.end());
 		st += add;
 	}
-
-
-	//if the palindrome is  not satisfied find the next character that matches the last character and try again.
-
-	//if the palindrom is satisfied then cut the prefix off that is necessary to confrom the whole string to a palindrome.
 	return st;
 }
