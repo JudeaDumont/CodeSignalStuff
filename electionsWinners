@@ -1,0 +1,36 @@
+int electionsWinners(std::vector<int> votes, int k) {
+    int max = votes[0];
+    for(int i = 1; i < votes.size(); ++i)
+    {
+        if(votes[i] > max)
+        {
+            max = votes[i];
+        }
+        if(k == 0 && votes[i] == max)
+        {
+            return 0;
+        }
+    }
+    int winners = 0;
+    bool oneWinner = false;
+    bool otherWinner = false;
+    for(int i = 0; i < votes.size(); ++i)
+    {
+        if(votes[i] + k > max)
+        {
+            ++winners;
+            if(oneWinner)
+            {
+                --winners;
+                oneWinner = false;
+            }
+            otherWinner = true;
+        }
+        else if(votes[i] + k == max && !oneWinner && winners == 0 && !otherWinner)
+        {
+            ++winners;
+            oneWinner = true;
+        }
+    }
+    return winners;
+}
