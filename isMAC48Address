@@ -4,10 +4,9 @@ bool isMAC48Address(std::string inputString) {
         for(int i = 0; i < inputString.size(); ++i)
         {
             if(
-                !((i != 0 && ((i == 2 || ((i - 2) % 3) == 0) && inputString[i] == '-')
-              )|| (inputString[i] > 47 &&  inputString[i] < 58)
-               || (inputString[i] > 64 &&  inputString[i] < 71)
-              )
+                !(((i + 1) % 3 == 0 && inputString[i] == '-')
+               || inputString[i] > 47 &&  inputString[i] < 58
+               || inputString[i] > 64 &&  inputString[i] < 71)
             )
             {
                 return false;
