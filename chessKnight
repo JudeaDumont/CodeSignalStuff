@@ -1,0 +1,37 @@
+int chessKnight(std::string cell) {
+    int goodNum = 8;
+    
+    if(cell[0] + 2 > 104)
+    {
+        goodNum -= 2;
+        if(cell[0] + 1 > 104)
+        {
+            goodNum -= 2;
+        }
+    }
+    else if(cell[0] - 2 < 97)
+    {
+        goodNum -= 2;
+        if(cell[0] - 1 < 97)
+        {
+            goodNum -= 2;
+        }
+    }
+    if(cell[1] + 2 > 56)
+    {
+        goodNum -= goodNum == 4 ? 1 : 2;
+        if(cell[1] + 1 > 56)
+        {
+            goodNum -= goodNum == 3 || goodNum == 4 ? 1 : 2;
+        }
+    }
+    else if(cell[1] - 2 < 49)
+    {
+        goodNum -= goodNum == 4 ? 1 : 2;
+        if(cell[1] - 1 < 49)
+        {
+            goodNum -= goodNum == 3 || goodNum == 4 ? 1 : 2;
+        }
+    }
+    return goodNum;
+}
