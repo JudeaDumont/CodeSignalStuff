@@ -1,0 +1,17 @@
+int deleteDigit(int n) {
+    std::string s = std::to_string(n);
+    for(int i = 0; i < s.size() - 1; ++i)
+    {
+        if(s[i] < s[i + 1])
+        {
+            s.erase(s.begin() + i);
+            std::stringstream strstr(s); 
+            strstr >> n;
+            return n;
+        }
+    }
+    s.erase(s.end() - 1);
+    std::stringstream strstr(s); 
+    strstr >> n;
+    return n;
+}
