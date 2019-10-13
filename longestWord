@@ -1,0 +1,22 @@
+std::string longestWord(std::string text) {
+    std::string token = "";
+    std::string maxSizeToken = "";
+    int pos= 0;
+    int maxSize = 0;
+    while ((pos=text.find_first_not_of("abcdefghijklmnopqrstuvwxyzQWERTYUIOPASDFGHJKLZXCVBNM"))!= string::npos )
+    {
+        if ( pos != 0 )
+        {
+            // Found a token
+            token = text.substr(0, pos);
+            if(token.size() > maxSize)
+            {
+                maxSize = token.size();
+                maxSizeToken = token;
+            }
+        }
+
+        text.erase(0, pos+1);  // Always remove pos+1 to get rid of delimiter
+    }
+    return maxSizeToken.size() > text.size() ? maxSizeToken : text;
+}
