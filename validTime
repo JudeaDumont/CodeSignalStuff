@@ -1,0 +1,11 @@
+bool validTime(std::string time) 
+{
+    int hour;
+    int minute;
+    std::stringstream hourstr(time.substr(0,2)); 
+    std::stringstream minutestr(time.substr(3,2)); 
+    
+    hourstr >> hour;
+    minutestr >> minute;
+    return hour < 24 && minute < 60;
+}
