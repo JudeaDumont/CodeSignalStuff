@@ -1,0 +1,35 @@
+int sumUpNumbers(std::string inputString) {
+	int sum = 0;
+	bool collectingNumber = false;
+	int firstPos = 0;
+	for (int i = 0; i < inputString.size(); ++i)
+	{
+		if (inputString[i] > 47 && inputString[i] < 58)
+		{
+			if (!collectingNumber)
+			{
+				collectingNumber = true;
+				firstPos = i;
+			}
+		}
+		else if (collectingNumber)
+		{
+			collectingNumber = false;
+
+			std::string s = inputString.substr(firstPos, i - firstPos);
+			std::stringstream strstr(s);
+			int n;
+			strstr >> n;
+			sum += n;
+		}
+	}
+    if(collectingNumber)
+    {
+        std::string s = inputString.substr(firstPos, inputString.size() - firstPos);
+        std::stringstream strstr(s);
+        int n;
+        strstr >> n;
+        sum += n;
+    }
+	return sum;
+}
