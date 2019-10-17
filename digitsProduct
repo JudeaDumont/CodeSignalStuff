@@ -1,7 +1,8 @@
 int digitsProduct(int product) {
 	if (product)
 	{
-		std::vector<int> factors;
+		int sum = 0;
+		int multiplicand = 1;
 		int i;
 		bool found;
 		while (product > 9)
@@ -11,7 +12,8 @@ int digitsProduct(int product) {
 			{
 				if (product % i == 0)
 				{
-					factors.push_back(i);
+                    sum += i * multiplicand;
+                    multiplicand *= 10;
 					product /= i;
 					found = true;
 				}
@@ -21,15 +23,7 @@ int digitsProduct(int product) {
 				return -1;
 			}
 		}
-		factors.push_back(product);
-		int sum = 0;
-		int multiplicand = 1;
-		for (auto i = factors.begin(); i != factors.end(); ++i)
-		{
-			sum += (*i) * multiplicand;
-			multiplicand *= 10;
-		}
-		return sum;
+		return product * multiplicand + sum;
 	}
 	return 10;
 }
