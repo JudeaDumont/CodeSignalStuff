@@ -1,0 +1,20 @@
+std::vector<std::string> fileNaming(std::vector<std::string> names) {
+    std::map<std::string, int> m;
+    for(size_t i = 0; i < names.size(); ++i)
+    {
+        auto it = m.find(names[i]);
+        if(it != m.end())
+        {
+            while(m.find(names[i] + "("+ std::to_string(++it->second) +")") != m.end())
+            {
+            }
+            m[names[i] += "("+ std::to_string(it->second) +")"] = 0;
+        }
+        else
+        {
+            m[names[i]] = 0;
+        }
+    }
+    
+    return names;
+}
