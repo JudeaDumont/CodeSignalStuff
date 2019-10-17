@@ -12,8 +12,8 @@ int digitsProduct(int product) {
 			{
 				if (product % i == 0)
 				{
-                    sum += i * multiplicand;
-                    multiplicand *= 10;
+                    			sum += i * multiplicand;
+                    			multiplicand *= 10;
 					product /= i;
 					found = true;
 				}
