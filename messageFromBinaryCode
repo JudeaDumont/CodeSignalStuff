@@ -1,0 +1,42 @@
+std::string messageFromBinaryCode(std::string code) {
+    std::string message; 
+    for(int i = 0; i < code.size(); i+=8)
+    {
+        std::string binString = code.substr(i, 8);
+        int accumulator = 0;
+        if(binString[0] == 49)
+        {
+            accumulator += 128;
+        }
+        if(binString[1] == 49)
+        {
+            accumulator += 64;
+        }
+        if(binString[2] == 49)
+        {
+            accumulator += 32;
+        }
+        if(binString[3] == 49)
+        {
+            accumulator += 16;
+        }
+        if(binString[4] == 49)
+        {
+            accumulator += 8;
+        }
+        if(binString[5] == 49)
+        {
+            accumulator += 4;
+        }
+        if(binString[6] == 49)
+        {
+            accumulator += 2;
+        }
+        if(binString[7] == 49)
+        {
+            accumulator += 1;
+        }
+        message.push_back((char)accumulator);
+    }
+    return message;
+}
