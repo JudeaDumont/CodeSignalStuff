@@ -1,0 +1,6 @@
+/*Please add ; after each select statement*/
+CREATE PROCEDURE volleyballResults()
+BEGIN
+	Select * from results
+    ORDER By wins;
+END
