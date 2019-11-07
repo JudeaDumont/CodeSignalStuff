@@ -1,0 +1,23 @@
+bool newRoadSystem(std::vector<std::vector<bool>> roadRegister) {
+	std::vector<int> in(roadRegister.size(), 0);
+	std::vector<int> out(roadRegister.size(), 0);
+	for (size_t i = 0; i < roadRegister.size(); i++)
+	{
+		for (size_t j = 0; j < roadRegister.size(); j++) //always square
+		{
+			if (roadRegister[i][j])
+			{
+				++out[i];
+				++in[j];
+			}
+		}
+	}
+	for (size_t i = 0; i < roadRegister.size(); i++)
+	{
+		if (out[i] != in[i])
+		{
+			return false;
+		}
+	}
+	return true;
+}
