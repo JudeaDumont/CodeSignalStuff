@@ -1,0 +1,7 @@
+/*Please add ; after each select statement*/
+CREATE PROCEDURE contestLeaderboard()
+BEGIN
+	SELECT name FROM leaderboard
+    ORDER by score desc
+    limit 3, 5;
+END
