@@ -3,57 +3,23 @@ std::vector<std::vector<int>> roadsBuilding(int cities, std::vector<std::vector<
 	std::map<int, std::set<int>> roadMap;
 	for (int i = 0; i < roads.size(); ++i)
 	{
-		if (roadMap.find(roads[i][0]) == roadMap.end())
-		{
-			roadMap.insert(std::make_pair(roads[i][0], std::set<int>()));
-			roadMap[roads[i][0]].insert(roads[i][1]);
-		}
-		else
-		{
-			roadMap[roads[i][0]].insert(roads[i][1]);
-		}
-		if (roadMap.find(roads[i][1]) == roadMap.end())
-		{
-			roadMap.insert(std::make_pair(roads[i][1], std::set<int>()));
-			roadMap[roads[i][1]].insert(roads[i][0]);
-		}
-		else
-		{
-			roadMap[roads[i][1]].insert(roads[i][0]);
-		}
+		roadMap.insert(std::make_pair(roads[i][0], std::set<int>()));
+		roadMap[roads[i][0]].insert(roads[i][1]);
+		roadMap.insert(std::make_pair(roads[i][1], std::set<int>()));
+		roadMap[roads[i][1]].insert(roads[i][0]);
 	}
 	for (int i = 0; i < cities; ++i)
 	{
-		if (roadMap.find(i) == roadMap.end())
+		for (int j = 0; j < cities; ++j)
 		{
-			roadMap.insert(std::make_pair(i, std::set<int>()));
-			for (int j = 0; j < cities; ++j)
+			if (i != j && (roadMap.find(i) == roadMap.end() || roadMap.at(i).find(j) == roadMap.at(i).end()))
 			{
-				if (i != j)
-				{
-					newRoads.push_back({ i,j });
-					roadMap.at(i).insert(j);
+				newRoads.push_back({ i,j });
+				roadMap.insert(std::make_pair(i, std::set<int>()));
+				roadMap[i].insert(j);
 
-					roadMap.insert(std::make_pair(j, std::set<int>()));
-					roadMap.at(j).insert(i);
-				}
-			}
-		}
-		else
-		{
-			for (int j = 0; j < cities; ++j)
-			{
-				if (i != j)
-				{
-					if (roadMap.at(i).find(j) == roadMap.at(i).end())
-					{
-						newRoads.push_back({ i,j });
-						roadMap.at(i).insert(j);
-
-						roadMap.insert(std::make_pair(j, std::set<int>()));
-						roadMap.at(j).insert(i);
-					}
-				}
+				roadMap.insert(std::make_pair(j, std::set<int>()));
+				roadMap[j].insert(i);
 			}
 		}
 	}
